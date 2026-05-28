@@ -164,11 +164,3 @@ GymSystem/
 | Build | IntelliJ IDEA module |
 
 ---
-
-## Limitations
-
-- **Singleton connection is not thread-safe.** `DatabaseConnection.getConnection()` caches a single `Connection` object. Concurrent access would require a connection pool (e.g., HikariCP).
-- **Credentials hardcoded in source.** The server address, username, and password in `DatabaseConnection.java` must be externalized (environment variables or a config file) before pushing to a public repository.
-- **No authentication at startup.** The main menu lets any user pick any role without entering credentials. `UserDAO` and `UserService` exist and support login queries but are not wired to a login gate.
-- **Plaintext passwords.** The `passwordHash` field name implies hashing but the implementation stores and compares raw strings.
-- **Database name has a typo.** The connection string targets `gym_management_systemm` (double m). Rename the database or fix the string before deployment.
